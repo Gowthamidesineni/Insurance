@@ -1,0 +1,18 @@
+mat-form-field {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+  fieldset{
+     width:80%; 
+  }
+  .fieldset2{
+      /* margin-top:-41%;
+    margin-left:52%; */
+  }
+  .validation{
+    color:red;
+  }
+  mat-radio-group{
+    margin-right:40px;
+    margin-left: 10px;
+  }

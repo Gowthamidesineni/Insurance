@@ -1,0 +1,230 @@
+       <form [formGroup] ="lossForm">
+    <fieldset>
+        <legend>Loss Details</legend>
+            <mat-form-field appearance="fill">
+                <mat-label>
+                    <mat-icon>
+                   </mat-icon>
+                    Claim Date                
+                </mat-label>
+                
+                <input type="date" matInput [formControl]="lostDate">
+                <div [hidden]="lostDate.valid" class="validation">
+                  <div [hidden]="!lostDate.hasError('required')">
+                    **Must Enter Vehicle Lost Date**
+                  </div>
+                 </div>
+            </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Time</mat-label>                  
+                  <input type="time" matInput [formControl]="lossTime">
+                  <div [hidden]="lossTime.valid" class="validation">
+                    <div [hidden]="!lossTime.hasError('required')">
+                      **Must Enter Vehicle Lost Time**
+                    </div>
+                   </div>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill">
+                  <mat-label>Speed</mat-label>                  
+                  <input type="number" matInput [formControl]="speed">
+                  <div [hidden]="speed.valid" class="validation">
+                    <div [hidden]="!speed.hasError('required')">
+                      **Must Enter Vehicle  speed*
+                    </div>
+                   </div>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="col-md-3">
+
+                  <mat-label>Place</mat-label>
+                    <!-- <input type="text" matInput [formControl]="place">-->
+                    <mat-select (selectionChange)="getCountry($event)" [formControl]="place"  >
+                      <mat-option *ngFor="let country of countries" [value]="country.name">
+                            {{country.name}}
+                      </mat-option>
+                </mat-select>
+                  </mat-form-field>
+                
+                <mat-form-field appearance="fill" class="col-md-3">
+                  <mat-label>To</mat-label>
+                    <mat-select (selectionChange)="getTo($event)" [formControl]="to">
+                      <mat-option *ngFor="let tocountry of countries" [value]="tocountry.name">
+                            {{tocountry.name}}
+                      </mat-option>
+                </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="col-md-3">
+                    <mat-label>Purpose</mat-label>
+                  <mat-select (selectionChange)="getPurpose($event)" [formControl]="purposeOftheVehicle">
+                    <mat-option *ngFor="let data of purposes" [value]="data">
+                                          {{data}}
+                    </mat-option>
+                 </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="col-md-3">
+                    <mat-label>Number of people travelling</mat-label>
+                    <input matInput type="number" [formControl]="travelCount"> 
+                    <div [hidden]="travelCount.valid" class="validation">
+                      <div [hidden]="!travelCount.hasError('required')">
+                        **Must Enter travelling count*
+                      </div>
+                     </div>
+                  </mat-form-field>
+                    <mat-label>Informed Police?</mat-label>
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="1">Yes</mat-radio-button>
+                    <mat-radio-button value="2">No</mat-radio-button>
+                  </mat-radio-group>
+                  
+                <mat-form-field appearance="fill" class="col-md-3">
+                  <mat-label>Name of Police Station</mat-label>
+                  <input matInput type="text" [formControl]="stationName">
+                  <!-- <div [hidden]="stationName.valid" class="validation">
+                    <div [hidden]="!stationName.hasError('required')">
+                      **Must Enter polics tation Name*
+                    </div>
+                    </div> -->
+                </mat-form-field>
+               
+                <mat-form-field appearance="fill" class="col-md-3">
+                  <mat-label>FIR No.</mat-label>
+                  <input type="number" matInput [formControl]="firNumber">
+                  <!-- <div [hidden]="firNumber.valid" class="validation">
+                    <div [hidden]="!firNumber.hasError('required')">
+                      **Must Enter FIR Number*
+                    </div>
+                    </div> -->
+                </mat-form-field>
+              
+                <mat-form-field appearance="fill" class="example-full-width col-md-3">
+                  <mat-label>How theft has occured?</mat-label>
+                  <textarea matInput placeholder="Ex. Car was parked near Mall..."></textarea>
+                </mat-form-field>
+    </fieldset>
+    <fieldset class="fieldset2">
+        <legend>Driver Details</legend>
+        <mat-form-field appearance="fill" class="col-md-3">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" [formControl]="driverName">
+            <div [hidden]="driverName.valid" class="validation">
+              <div [hidden]="!driverName.hasError('required')">
+                **Must Enter Name*
+              </div>
+            </div>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Relation with Insured</mat-label>
+            <input matInput type="text" [formControl]="relationInsured">
+            <div [hidden]="relationInsured.valid" class="validation">
+              <div [hidden]="!relationInsured.hasError('required')">
+                **Must Enter Relation*
+              </div>
+            </div>
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>
+                <mat-icon>
+               </mat-icon>
+                Date Of Birth              
+            </mat-label>            
+            <input type="date" matInput [formControl]="dateOfBirth">
+            <div [hidden]="dateOfBirth.valid" class="validation">
+              <div [hidden]="!dateOfBirth.hasError('required')">
+                **Must Enter DOB*
+              </div>
+            </div>
+        </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Telephone</mat-label>
+            <!-- <span matPrefix>+91 &nbsp;</span> -->
+            <input matInput type="number" placeholder="9876543214" [formControl]="mobileNumber">
+            <div [hidden]="mobileNumber.valid" class="validation">
+              <div [hidden]="!mobileNumber.hasError('required')">
+                **Must Enter Mobile Number*
+              </div>
+            </div>
+          </mat-form-field>
+          
+          <mat-label>Gender</mat-label>
+                <mat-radio-group aria-label="Select Gender">
+                    <mat-radio-button value="1">Female</mat-radio-button>
+                    <mat-radio-button value="2">Male</mat-radio-button>
+                  </mat-radio-group>
+                  
+                  <mat-form-field appearance="fill">
+                    <mat-label>License Number</mat-label>
+                    <input  matInput type="number" [formControl]="licenceNumber">
+                    <div [hidden]="licenceNumber.valid" class="validation">
+                      <div [hidden]="!licenceNumber.hasError('required')">
+                        **Must Enter Licence Number*
+                      </div>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>
+                        <mat-icon>
+                       </mat-icon>
+                        License Effective Date               
+                    </mat-label>
+                    
+                    <input type="date" matInput [formControl]="licenseEffectiveDate">
+                    <div [hidden]="licenseEffectiveDate.valid" class="validation">
+                      <div [hidden]="!licenseEffectiveDate.hasError('required')">
+                        **Must Enter Licence Effective Date*
+                      </div>
+                    </div>
+                </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Issuing RTO</mat-label>
+                    <input matInput [formControl]="issueRTO">
+                    <div [hidden]="issueRTO.valid" class="validation">
+                      <div [hidden]="!issueRTO.hasError('required')">
+                        **Must Enter Issuing RTO*
+                      </div>
+                    </div>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>
+                        <mat-icon>
+                       </mat-icon>
+                        License Expiry Date               
+                    </mat-label>
+                    
+                    <input type="date" matInput [formControl]="licenseExpiryDate">
+                    <div [hidden]="licenseExpiryDate.valid" class="validation">
+                      <div [hidden]="!licenseExpiryDate.hasError('required')">
+                        **Must Enter Licence Expiry Date*
+                      </div>
+                    </div>
+                </mat-form-field>
+                  
+                  <mat-form-field appearance="fill" class="col-md-3">
+                    <mat-label>Vehicle Class</mat-label>
+                  <mat-select (selectionChange)="getVehicle($event)" [formControl]="vehicleClass">
+                                    <mat-option *ngFor="let data of vehicles" [value]="data">
+                                          {{data}}
+                                    </mat-option>
+                                   </mat-select>
+                  </mat-form-field>
+                  <!-- <mat-label>Class Of Vehicle</mat-label>
+                <mat-radio-group aria-label="Select Class">
+                    <mat-radio-button value="1">Transport</mat-radio-button>
+                    <mat-radio-button value="2">LMV</mat-radio-button>
+                    <mat-radio-button value="2">HGV</mat-radio-button>
+                  </mat-radio-group>&nbsp;&nbsp; -->
+                  <mat-form-field appearance="fill" class="col-md-3">
+                    <mat-label>Driver Type</mat-label>
+                  <mat-select (selectionChange)="getDriver($event)" [formControl]="drivertypecontrol">
+                                    <mat-option *ngFor="let data of drivers" [value]="data">
+                                          {{data}}
+                                    </mat-option>
+                                   </mat-select>
+                  </mat-form-field>
+        </fieldset>
+</form>
+    

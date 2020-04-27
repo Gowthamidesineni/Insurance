@@ -1,0 +1,23 @@
+.header{
+    width: 80%;
+    margin-left: 8%;
+
+}
+.figure{
+float: left;
+
+}
+.article{
+width: 50%;
+margin-left: 30%;
+padding: 5%;
+
+}
+.figure img{
+    width:150px;
+    height: 150px;
+}
+.menu_section{
+    width: 50%;
+    margin-left: 30%;
+}
